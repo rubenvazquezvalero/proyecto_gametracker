@@ -10,7 +10,7 @@ import Register from '../components/Register.vue';
 /* Guest Component */
 
 /* Layouts */
-import DahboardLayout from '../components/Layouts/Dashboard.vue';
+import DahboardLayout from '../components/layouts/Dashboard.vue';
 /* Layouts */
 
 /* Authenticated Component */
