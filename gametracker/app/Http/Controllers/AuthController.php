@@ -24,6 +24,8 @@ class AuthController extends Controller
         ]);
     
         $token = $user->createToken('authToken')->plainTextToken;
+
+        Auth::attempt($request->only('email', 'password'));
     
         return response()->json([
             'access_token' => $token,
