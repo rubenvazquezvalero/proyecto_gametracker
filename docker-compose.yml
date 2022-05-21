@@ -21,3 +21,4 @@ services:
       - './gametracker:/app'
     depends_on:
       - mariadb
+    command: batch -c "composer install"
