@@ -46,8 +46,12 @@ export default {
         }),
         async logout(){
             await axios.get('/api/logout').then(({data})=>{
-                this.signOut()
-                this.$router.push({name:"login"})
+                this.signOut();
+                this.$router.push({name:"login"});
+            }).catch((error) => {
+                console.log(error.response.data.errors);
+                //this.signOut();
+                //this.$router.push({name:"login"});
             })
         }
     }
