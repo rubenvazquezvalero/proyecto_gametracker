@@ -33,15 +33,17 @@ import Vue from 'vue';
 // Importar las rutas
 //import routes from './routes';
 
+import principal from './components/layouts/Principal.vue';
+
 import router from './router'
 import store from './store'
 
 //Vue.use(VueRouter)
 
-
 let app = new Vue({
     el: '#app',
     store: store,
-    router:router
+    router:router,
+    render: h => h(principal)
     //router: new VueRouter(routes)
 });
