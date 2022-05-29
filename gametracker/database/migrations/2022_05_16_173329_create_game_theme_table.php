@@ -15,6 +15,17 @@ class CreateGameThemeTable extends Migration
     {
         Schema::create('game_theme', function (Blueprint $table) {
             $table->id();
+            
+            $table->foreignId('game_id')
+            ->constrained('games')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
+            $table->foreignId('theme_id')
+            ->constrained('themes')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

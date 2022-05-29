@@ -3,11 +3,13 @@ version: '2'
 services:
   mariadb:
     image: docker.io/bitnami/mariadb:10.6
+    ports:
+      - '3306:3306'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=ruben
-      - MARIADB_DATABASE=gametracker_db
+      - MARIADB_DATABASE=gametracker
   myapp:
     image: docker.io/bitnami/laravel:8
     ports:
@@ -16,7 +18,7 @@ services:
       - DB_HOST=mariadb
       - DB_PORT=3306
       - DB_USERNAME=ruben
-      - DB_DATABASE=gametracker_db
+      - DB_DATABASE=gametracker
     volumes:
       - './gametracker:/app'
     depends_on:

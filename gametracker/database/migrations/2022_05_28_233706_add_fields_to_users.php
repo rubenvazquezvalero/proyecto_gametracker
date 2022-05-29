@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGameDeveloperTable extends Migration
+class AddFieldsToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateGameDeveloperTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_developer', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_admin')->default(false);
         });
     }
 
@@ -26,6 +25,8 @@ class CreateGameDeveloperTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_developer');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_admin');
+        });
     }
 }

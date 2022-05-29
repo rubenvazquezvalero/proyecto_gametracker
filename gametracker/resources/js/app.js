@@ -43,7 +43,7 @@ import store from './store'
 let app = new Vue({
     el: '#app',
     store: store,
-    router:router,
+    router: router,
     render: h => h(principal)
     //router: new VueRouter(routes)
 });

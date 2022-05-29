@@ -5,6 +5,7 @@ import auth from './auth'
 
 Vue.use(Vuex)
 
+// Vuex permite compartir datos entre todos los componentes, aqui se declara.
 export default new Vuex.Store({
     plugins:[
         createPersistedState()

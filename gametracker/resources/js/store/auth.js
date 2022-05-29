@@ -3,6 +3,7 @@ import router from '../router'
 
 export default {
     namespaced: true,
+    // El state contiene datos que se pueden acceder desde todos los Componentes
     state:{
         authenticated:false,
         user:{}
@@ -15,6 +16,7 @@ export default {
             return state.user
         }
     },
+    // Los Mutations son para hacer cambios en el state
     mutations:{
         SET_AUTHENTICATED (state, value) {
             state.authenticated = value
@@ -23,6 +25,7 @@ export default {
             state.user = value
         }
     },
+    // Los Actions se utilizan principalmente para las consultas a un api y a traves de un commit realizan mutaciones en el estado
     actions:{
         login({commit}){
             return axios.get('/api/user').then(({data})=>{

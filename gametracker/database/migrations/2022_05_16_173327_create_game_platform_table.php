@@ -15,6 +15,19 @@ class CreateGamePlatformTable extends Migration
     {
         Schema::create('game_platform', function (Blueprint $table) {
             $table->id();
+                        
+            $table->foreignId('game_id')
+            ->constrained('games')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
+            $table->foreignId('platform_id')
+            ->constrained('platforms')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
+            $table->date('release_date');
+
             $table->timestamps();
         });
     }

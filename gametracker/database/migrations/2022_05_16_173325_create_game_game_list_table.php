@@ -15,6 +15,17 @@ class CreateGameGameListTable extends Migration
     {
         Schema::create('game_game_list', function (Blueprint $table) {
             $table->id();
+            
+            $table->foreignId('game_list_id')
+            ->constrained('game_lists')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
+            $table->foreignId('game_id')
+            ->constrained('games')
+            ->cascadeOnUpdate()
+            ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

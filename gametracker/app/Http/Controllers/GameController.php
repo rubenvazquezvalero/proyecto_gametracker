@@ -14,7 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $games = Game::all();
+        return $games;
     }
 
     /**
@@ -25,7 +26,8 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $game = Game::crate($request->post());
+        return $game;
     }
 
     /**
@@ -36,7 +38,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //
+        return $game;
     }
 
     /**
@@ -48,7 +50,8 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $game->fill($request->post())->save();
+        return $game;
     }
 
     /**
@@ -59,6 +62,9 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        return response()->json([
+            'mensaje' => 'Juego eliminado'
+        ]);
     }
 }

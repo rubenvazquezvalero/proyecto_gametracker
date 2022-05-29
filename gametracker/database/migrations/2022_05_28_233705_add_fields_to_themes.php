@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamePublisherTable extends Migration
+class AddFieldsToThemes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateGamePublisherTable extends Migration
      */
     public function up()
     {
-        Schema::create('game_publisher', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('themes', function (Blueprint $table) {
+            $table->string('slug')->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ class CreateGamePublisherTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('game_publisher');
+        Schema::table('themes', function (Blueprint $table) {
+            $table->dropColumn('slug')->nullable();
+        });
     }
 }

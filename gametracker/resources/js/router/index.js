@@ -17,6 +17,8 @@ import DahboardLayout from '../components/layouts/Dashboard.vue';
 import Dashboard from '../components/Dashboard.vue';
 /* Authenticated Component */
 
+import Juegos from '../components/Juegos.vue';
+
 
 const Routes = [
     {
@@ -38,21 +40,32 @@ const Routes = [
         }
     },
     {
+        name:"games",
+        path:"/games",
+        component:Juegos,
+        meta:{
+            middleware:"all",
+            title:`Juegos`
+        }
+    },
+/*     {
         path:"/",
         component:DahboardLayout,
         meta:{
             middleware:"auth"
         },
         children:[
-            {
-                name:"dashboard",
-                path: '/',
-                component: Dashboard,
-                meta:{
-                    title:`Dashboard`
-                }
-            }
+            
         ]
+    }, */
+    {
+        name:"dashboard",
+        path: '/',
+        component: Dashboard,
+        meta:{
+            middleware:"auth",
+            title:`Dashboard`
+        }
     }
 ]
 
@@ -63,7 +76,9 @@ var router  = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} - ${process.env.MIX_APP_NAME}`
-    if(to.meta.middleware=="guest"){
+    if (to.meta.middleware=="all") {
+        next()
+    }else if(to.meta.middleware=="guest"){
         if(store.state.auth.authenticated){
             next({name:"dashboard"})
         }
