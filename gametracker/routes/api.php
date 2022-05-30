@@ -27,4 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout',[AuthController::class,'logout']);
 });
 
+Route::get('/game-by-slug/{slug}', 'GameController@showBySlug');
+
 Route::apiResource('game', GameController::class);
