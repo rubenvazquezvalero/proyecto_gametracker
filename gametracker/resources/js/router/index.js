@@ -18,6 +18,8 @@ import Dashboard from '../components/Dashboard.vue';
 /* Authenticated Component */
 
 import Juegos from '../components/Juegos.vue';
+import Juego from '../components/Juego.vue';
+import PageNotFound from '../components/404.vue';
 
 
 const Routes = [
@@ -48,6 +50,15 @@ const Routes = [
             title:`Juegos`
         }
     },
+    {
+        name:"game",
+        path:'/games/:slug',
+        component:Juego,
+        meta:{
+            middleware:"all",
+            title:`Juego`
+        }
+    },
 /*     {
         path:"/",
         component:DahboardLayout,
@@ -65,6 +76,15 @@ const Routes = [
         meta:{
             middleware:"auth",
             title:`Dashboard`
+        }
+    },
+    { 
+        name: "PageNotFound",
+        path: "*",
+        component: PageNotFound,
+        meta:{
+            middleware:"all",
+            title:`Page Not Found`
         }
     }
 ]
