@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GameList;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,10 @@ class AuthController extends Controller
         $token = $user->createToken('authToken')->plainTextToken;
 
         Auth::attempt($request->only('email', 'password'));
+
+        $lista = new GameList();
+        $lista->user_id = $user->id;
+        $lista->save();
     
         return response()->json([
             'access_token' => $token,
