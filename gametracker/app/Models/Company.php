@@ -10,10 +10,10 @@ class Company extends Model
     use HasFactory;
     
     public function publishedGames(){
-        return $this->belongsToMany(Game::class, 'games_publishers');
+        return $this->belongsToMany(Game::class, 'game_publisher');
     }
 
     public function developedGames(){
-        return $this->belongsToMany(Game::class, 'games_developers');
+        return $this->belongsToMany(Game::class, 'game_developer');
     }
 }

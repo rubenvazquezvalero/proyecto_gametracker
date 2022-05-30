@@ -17,7 +17,7 @@ class Game extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function gameModes(){
+    public function game_modes(){
         return $this->belongsToMany(GameMode::class);
     }
 
@@ -34,10 +34,10 @@ class Game extends Model
     }
 
     public function publishers(){
-        return $this->belongsToMany(Company::class, 'games_publishers');
+        return $this->belongsToMany(Company::class, 'game_publisher');
     }
 
     public function developers(){
-        return $this->belongsToMany(Company::class, 'games_developers');
+        return $this->belongsToMany(Company::class, 'game_developer');
     }
 }
