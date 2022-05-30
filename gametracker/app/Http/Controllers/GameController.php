@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GameResource;
 use App\Models\Game;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -14,7 +16,10 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
+        //$games = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->get();
+        //return GameResource::collection($games->paginate())->response();
+        //$games = Game::all();
+        $games = Game::paginate(20);
         return $games;
     }
 
@@ -26,7 +31,7 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $game = Game::crate($request->post());
+        $game = Game::create($request->post());
         return $game;
     }
 
@@ -36,8 +41,27 @@ class GameController extends Controller
      * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($id)
     {
+        //$game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->findOrFail($id);
+        try {
+            $game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Not found']);
+        }
+        
+        return $game;
+    }
+
+    public function showBySlug($slug)
+    {
+        //$game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->findOrFail($id);
+        try {
+            $game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->where('slug','=',$slug)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Not found']);
+        }
+        
         return $game;
     }
 
