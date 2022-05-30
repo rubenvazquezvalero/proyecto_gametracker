@@ -17,12 +17,12 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->text('description');
-            $table->boolean('is_developer');
-            $table->boolean('is_publisher');
-            $table->string('website');
+            $table->text('description')->default("");
+            $table->boolean('is_developer')->nullable();
+            $table->boolean('is_publisher')->nullable();
+            $table->string('website')->default("");
             $table->string('country');
-            $table->string('status');
+            $table->enum('status',['activa','inactiva']);
             $table->timestamps();
         });
     }
