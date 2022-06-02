@@ -51,6 +51,7 @@ class GameController extends Controller
         }
         
         return $game;
+        //return GameResource::collection($game->paginate())->response();
     }
 
     public function showBySlug($slug)
@@ -58,11 +59,13 @@ class GameController extends Controller
         //$game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->findOrFail($id);
         try {
             $game = Game::with(['genres','themes','platforms','developers','publishers','game_modes'])->where('slug','=',$slug)->firstOrFail();
+            //$game = Game::with(['genres','themes','platforms','developers','publishers','game_modes']);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Not found']);
         }
         
         return $game;
+        //return GameResource::collection($game->get())->where('slug','=',$slug)->firstOrFail();
     }
 
     /**

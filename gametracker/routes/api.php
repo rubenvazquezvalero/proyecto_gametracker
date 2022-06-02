@@ -30,3 +30,4 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/game-by-slug/{slug}', 'GameController@showBySlug');
 
 Route::apiResource('game', GameController::class);
+Route::apiResource('genre', GenreController::class);

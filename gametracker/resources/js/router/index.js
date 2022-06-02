@@ -19,6 +19,7 @@ import Dashboard from '../components/Dashboard.vue';
 
 import Juegos from '../components/Juegos.vue';
 import Juego from '../components/Juego.vue';
+import Perfil from '../components/Perfil.vue';
 import PageNotFound from '../components/404.vue';
 
 
@@ -57,6 +58,15 @@ const Routes = [
         meta:{
             middleware:"all",
             title:`Juego`
+        }
+    },
+    {
+        name:"perfil",
+        path:'/perfil/:name',
+        component:Perfil,
+        meta:{
+            middleware:"auth",
+            title:`Perfil de :name`
         }
     },
 /*     {

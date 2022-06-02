@@ -35,9 +35,17 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li>
+
+
+                        <li v-if="!auth.authenticated" class="nav-item ms-lg-5">
+                            <router-link :to="{ name: 'login' }" class="btn btn-outline-light">Login</router-link>
+                        </li>
+                        <li v-if="!auth.authenticated" class="nav-item ms-lg-3">
+                            <router-link :to="{ name: 'register' }" class="btn btn-success">Regístrate</router-link>
+                        </li>
                     </ul>
-                    <ul class="navbar-nav user-nav mb-2 mb-lg-0">
-                        <li v-if="auth.authenticated" class="nav-item dropdown">
+                    <ul v-if="auth.authenticated" class="navbar-nav user-nav mb-2 mb-lg-0">
+                        <li class="nav-item dropdown me-5">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ auth.user.name }}
@@ -45,17 +53,17 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="javascript:void(0)" @click="logout">Cerrar sesión</a>
                                 </li>
+                                <li>
+                                    <router-link :to="{ name:'perfil',params:{name:auth.user.name}}" class="dropdown-item">Perfil</router-link>
+                                </li>
                             </ul>
-                        </li>
-                        <li v-else class="nav-item">
-                            <router-link :to="{ name: 'register' }" class="btn btn-success">Regístrate</router-link>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main>
+        <main class="mt-5">
             <router-view></router-view>
         </main>
 
@@ -220,14 +228,24 @@ export default {
 
 <!-- Estilos globales -->
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,900;1,300;1,400&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
     background-color: #e6f9ee;
     line-height: 1.15;
 }
 
-main{
+main {
     min-height: calc(100vh - 170px);
     margin-top: 70px;
+}
+
+.nav-item .btn {
+    transform: translate(0%, 15%);
 }
 
 .btn.btn-primary {
