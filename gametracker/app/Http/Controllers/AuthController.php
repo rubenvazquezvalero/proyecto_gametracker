@@ -57,7 +57,7 @@ class AuthController extends Controller
 
     public function logout(){
         auth()->user()->tokens()->delete();
-
+        Auth::guard('web')->logout();
         return [
             'message' => 'Se ha cerrado la sesión.'
         ];

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToGenres extends Migration
+class AddFieldsToGameGameList extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddFieldsToGenres extends Migration
      */
     public function up()
     {
-        Schema::table('genres', function (Blueprint $table) {
-            $table->string('slug')->nullable();
+        Schema::table('game_game_list', function (Blueprint $table) {
+            $table->enum('status',['jugando','terminado','pendiente']);
         });
     }
 
@@ -25,8 +25,8 @@ class AddFieldsToGenres extends Migration
      */
     public function down()
     {
-        Schema::table('genres', function (Blueprint $table) {
-            $table->dropColumn('slug');
+        Schema::table('game_game_list', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

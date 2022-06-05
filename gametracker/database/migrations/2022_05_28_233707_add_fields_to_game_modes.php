@@ -26,7 +26,7 @@ class AddFieldsToGameModes extends Migration
     public function down()
     {
         Schema::table('game_modes', function (Blueprint $table) {
-            $table->dropColumn('slug')->nullable();
+            $table->dropColumn('slug');
         });
     }
 }

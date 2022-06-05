@@ -26,7 +26,7 @@ class AddFieldsToPlatforms extends Migration
     public function down()
     {
         Schema::table('platforms', function (Blueprint $table) {
-            $table->dropColumn('abbreviation')->nullable();
+            $table->dropColumn('abbreviation');
         });
     }
 }

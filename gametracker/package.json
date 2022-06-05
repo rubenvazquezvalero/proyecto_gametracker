@@ -27,6 +27,7 @@
     "dependencies": {
         "vue-loading-skeleton": "^2.0.0-beta.1",
         "vue-router": "^3.5.4",
+        "vue-toastr": "^2.1.2",
         "vuex": "^3.6.2",
         "vuex-persistedstate": "^3.2.1"
     }

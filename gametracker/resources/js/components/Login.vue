@@ -48,7 +48,7 @@
                     <label for="password">Contraseña</label>
                 </div>
                 <div class="d-flex col-12">
-                    <button type="submit" :disabled="processing" @click="login" class="btn btn-primary mx-auto">{{ processing ? "Iniciando sesión" : "Inicia sesión" }} <i
+                    <button type="submit" :disabled="processing" @click="login" class="btn btn-primary fw-bold mx-auto">{{ processing ? "Iniciando sesión" : "Inicia sesión" }} <i
                             class="fas fa-sign-in-alt fa-fw"></i></button>
                 </div>
             </form>

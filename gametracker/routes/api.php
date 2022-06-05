@@ -25,9 +25,11 @@ Route::post('/register',[AuthController::class,'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout',[AuthController::class,'logout']);
+    Route::post('/list/add-game', 'GameListController@addGame');
 });
 
 Route::get('/game-by-slug/{slug}', 'GameController@showBySlug');
 
 Route::apiResource('game', GameController::class);
 Route::apiResource('genre', GenreController::class);
+Route::apiResource('list', GameListController::class);

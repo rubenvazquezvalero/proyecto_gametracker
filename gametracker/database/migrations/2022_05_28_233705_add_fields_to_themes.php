@@ -26,7 +26,7 @@ class AddFieldsToThemes extends Migration
     public function down()
     {
         Schema::table('themes', function (Blueprint $table) {
-            $table->dropColumn('slug')->nullable();
+            $table->dropColumn('slug');
         });
     }
 }

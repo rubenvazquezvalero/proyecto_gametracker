@@ -14,6 +14,6 @@ class GameList extends Model
     }
 
     public function games(){
-        return $this->belongsToMany(Game::class);
+        return $this->belongsToMany(Game::class)->withPivot('status');
     }
 }

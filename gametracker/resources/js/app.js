@@ -33,10 +33,16 @@ import Vue from 'vue';
 // Importar las rutas
 //import routes from './routes';
 
-import principal from './components/layouts/Principal.vue';
+import router from './router';
+import store from './store';
 
-import router from './router'
-import store from './store'
+import VueToastr from "vue-toastr";
+
+Vue.use(VueToastr, {
+    /* OverWrite Plugin Options if you need */
+    defaultTimeout: 3000,
+    defaultPosition: "toast-top-right"
+});
 
 //Vue.use(VueRouter)
 
@@ -44,6 +50,6 @@ let app = new Vue({
     el: '#app',
     store: store,
     router: router,
-    render: h => h(principal)
+    //render: h => h(principal)
     //router: new VueRouter(routes)
 });

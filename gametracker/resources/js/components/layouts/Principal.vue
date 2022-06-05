@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app-web">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <router-link :to="{ name: 'login' }" class="navbar-brand">
@@ -51,10 +51,11 @@
                                 {{ auth.user.name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="javascript:void(0)" @click="logout">Cerrar sesión</a>
+                                <li>
+                                    <router-link :to="{ name:'perfil',params:{name:auth.user.name.toLowerCase()}}" class="dropdown-item">Perfil</router-link>
                                 </li>
                                 <li>
-                                    <router-link :to="{ name:'perfil',params:{name:auth.user.name}}" class="dropdown-item">Perfil</router-link>
+                                    <a class="dropdown-item" href="javascript:void(0)" @click="logout">Cerrar sesión</a>
                                 </li>
                             </ul>
                         </li>
@@ -197,6 +198,7 @@
 <script>
 import { mapActions } from 'vuex';
 import { mapState } from 'vuex';
+
 export default {
     name: "principal",
     data() {
@@ -222,7 +224,7 @@ export default {
     },
     computed: {
         ...mapState(['auth'])
-    },
+    }
 }
 </script>
 
@@ -234,45 +236,40 @@ export default {
     font-family: 'Roboto', sans-serif;
 }
 
-body {
+#app-web {
     background-color: #e6f9ee;
     line-height: 1.15;
 }
 
-main {
-    min-height: calc(100vh - 170px);
-    margin-top: 70px;
+#app-web main {
+	 min-height: calc(100vh - 170px);
+	 margin-top: 70px;
+}
+ #app-web .nav-item .btn {
+	 transform: translate(0%, 15%);
+}
+ #app-web .btn.btn-primary {
+	 background-color: #38d67a;
+	 border-color: #38d67a;
+	/* font-weight: bold;
+	 */
+}
+ #app-web .btn.btn-primary:hover {
+	 background-color: #34c972;
+	 border-color: #34c972;
+}
+ #app-web .btn.btn-primary:focus {
+	 box-shadow: none;
+}
+ #app-web .form-control {
+	 box-shadow: none;
+	 border: none;
+	 background-color: #e6f9ee;
+}
+ #app-web .form-control, #app-web .form-control:focus {
+	 box-shadow: 0 0 0 40px #e6f9ee inset;
 }
 
-.nav-item .btn {
-    transform: translate(0%, 15%);
-}
-
-.btn.btn-primary {
-    background-color: #38D67A;
-    border-color: #38D67A;
-    font-weight: bold;
-}
-
-.btn.btn-primary:hover {
-    background-color: #34C972;
-    border-color: #34C972;
-}
-
-.btn.btn-primary:focus {
-    box-shadow: none;
-}
-
-.form-control {
-    box-shadow: none;
-    border: none;
-    background-color: #e6f9ee;
-}
-
-.form-control,
-.form-control:focus {
-    box-shadow: 0 0 0 40px #e6f9ee inset;
-}
 </style>
 
 <!-- Estilos de este componente -->
@@ -301,5 +298,6 @@ ul.navbar-nav.main-nav {
 
 .user-nav {
     min-width: 85px;
+    font-size: 1rem;
 }
 </style>
