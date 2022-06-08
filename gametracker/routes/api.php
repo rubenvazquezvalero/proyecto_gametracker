@@ -29,7 +29,16 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/game-by-slug/{slug}', 'GameController@showBySlug');
+Route::get('/companies/name', 'CompanyController@indexOnlyName');
+Route::get('/platforms/paginate', 'PlatformController@indexPaginate');
+Route::get('/companies/paginate', 'CompanyController@indexPaginate');
+Route::get('/modes/paginate', 'GameModeController@indexPaginate');
 
 Route::apiResource('game', GameController::class);
-Route::apiResource('genre', GenreController::class);
 Route::apiResource('list', GameListController::class);
+Route::apiResource('companies', CompanyController::class);
+Route::apiResource('platforms', PlatformController::class);
+Route::apiResource('genres', GenreController::class);
+Route::apiResource('themes', ThemeController::class);
+Route::apiResource('modes', GameModeController::class);
+Route::apiResource('users', UserController::class);

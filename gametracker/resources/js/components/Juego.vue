@@ -20,11 +20,11 @@
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
                                     aria-labelledby="dropdownMenuButton1">
                                     <li><a class="dropdown-item" href="javascript:void(0)"
-                                            @click="addPending">Pendiente</a></li>
+                                            @click="addGameToList('pendiente')">Pendiente</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)"
-                                            @click="addPlaying">Jugando</a></li>
+                                            @click="addGameToList('jugando')">Jugando</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)"
-                                            @click="addFinished">Terminado</a></li>
+                                            @click="addGameToList('terminado')">Terminado</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -117,19 +117,20 @@ export default {
                     console.log(error)
                 })
         },
-        async addPending() {
+        async addGameToList(status) {
+            console.log(status);
             await axios.post('/api/list/add-game', {
                 game_id: this.juego.id,
-                status: 'Pendiente'
+                status: status
             }).then(response => {
                 console.log(response)
             }).catch(error => {
-                this.$toastr.w(error);
+                this.$toastr.e(error);
                 //window.alert(error);
                 console.log(error);
             });
         },
-        async addPlaying() {
+        /* async addPlaying() {
             await axios.post('/api/list/add-game', {
                 game_id: this.juego.id,
                 status: 'Jugando'
@@ -148,7 +149,7 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
-        }
+        } */
     },
 }
 </script>

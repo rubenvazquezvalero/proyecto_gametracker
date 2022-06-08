@@ -1,6 +1,6 @@
 <template>
     <div id="app-web">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark position-relative">
             <div class="container">
                 <router-link :to="{ name: 'login' }" class="navbar-brand">
                     <img src="/img/logo_gametracker_blanco_sin_borde_125x65.png" alt="" width="85">
@@ -51,6 +51,9 @@
                                 {{ auth.user.name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li v-if="auth.user.is_admin">
+                                    <router-link :to="{ name:'admin' }" class="dropdown-item">Administración</router-link>
+                                </li>
                                 <li>
                                     <router-link :to="{ name:'perfil',params:{name:auth.user.name.toLowerCase()}}" class="dropdown-item">Perfil</router-link>
                                 </li>

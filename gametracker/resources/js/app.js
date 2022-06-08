@@ -38,6 +38,10 @@ import store from './store';
 
 import VueToastr from "vue-toastr";
 
+import Multiselect from 'vue-multiselect';
+
+Vue.component('multiselect', Multiselect);
+
 Vue.use(VueToastr, {
     /* OverWrite Plugin Options if you need */
     defaultTimeout: 3000,

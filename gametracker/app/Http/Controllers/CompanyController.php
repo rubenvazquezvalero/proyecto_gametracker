@@ -14,7 +14,17 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return Company::all();
+    }
+
+    public function indexPaginate()
+    {
+        return Company::paginate(10);
+    }
+
+    public function indexOnlyName()
+    {
+        return Company::all('id','name');
     }
 
     /**
@@ -25,7 +35,18 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Company::create($request->post());
+        } catch (\Throwable $th) {
+            if($th instanceof \PDOException )
+            {
+                //return response()->view('errors.500', [], 500);
+                return response()->json(['error' => 'invalid'], 401);
+            }
+            return $th;
+        }
+
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**

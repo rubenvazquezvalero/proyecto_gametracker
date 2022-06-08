@@ -14,7 +14,12 @@ class GameModeController extends Controller
      */
     public function index()
     {
-        //
+        return GameMode::all();
+    }
+
+    public function indexPaginate()
+    {
+        return GameMode::paginate(10);
     }
 
     /**

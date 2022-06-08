@@ -14,7 +14,7 @@ class ThemeController extends Controller
      */
     public function index()
     {
-        //
+        return Theme::all();
     }
 
     /**

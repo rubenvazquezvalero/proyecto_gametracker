@@ -6,6 +6,7 @@ use App\Http\Resources\GameResource;
 use App\Models\Game;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
@@ -31,8 +32,50 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $game = Game::create($request->post());
-        return $game;
+        //$game = Game::create($request->post());
+        $game = new Game();
+        $game->title = $request->title;
+        $game->slug = $request->slug;
+        $game->description = $request->description;
+        
+        try {
+            $game->save();
+
+            // Obtener el siguiente id
+            /* $id=DB::select("SHOW TABLE STATUS LIKE 'games'");
+            $game->id = $id[0]->Auto_increment; */
+    
+            foreach ($request->genres as $genre) {
+                $game->genres()->attach($genre['id']);
+            }
+            foreach ($request->themes as $theme) {
+                $game->themes()->attach($theme['id']);
+            }
+            foreach ($request->developers as $developer) {
+                $game->developers()->attach($developer['id']);
+            }
+            foreach ($request->publishers as $publisher) {
+                $game->publishers()->attach($publisher['id']);
+            }
+            foreach ($request->modes as $mode) {
+                $game->game_modes()->attach($mode['id']);
+            }
+            foreach ($request->platforms as $platform) {
+                $game->platforms()->attach([$platform['id'] => ['release_date' => $platform['release_date']]]);
+            }
+        } catch (\Throwable $th) {
+            if($th instanceof \PDOException )
+            {
+                //return response()->view('errors.500', [], 500);
+                return response()->json(['error' => 'invalid'], 401);
+            }
+            return $th;
+        }
+
+        //$game->save();
+        
+        //return $game;
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**

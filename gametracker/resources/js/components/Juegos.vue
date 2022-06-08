@@ -12,7 +12,7 @@
                     <router-link :to="{name:'game',params:{slug:juego.slug}}">
                         <img class="card-img-top rounded" :src="`/img/juegos/portadas/${juego.slug}.png`" :alt="juego.slug" loading="lazy"/>
                     </router-link>
-                    <div class="card-body p-4">
+                    <div class="card-body py-4 px-1">
                         <div class="text-center">
                             <!-- Nombre-->
                             <h5 class="fw-bolder">{{juego.title}}</h5>

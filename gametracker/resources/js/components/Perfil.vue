@@ -25,16 +25,18 @@
             <div class="games-table row bg-light rounded p-4">
                 <h2 class="fs-5 .title-info text-uppercase fw-bolder">Lista de juegos</h2>
                 <hr>
-                <div class="col-12">
-                    <table class="table table-striped">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
                         <tbody>
                             <tr v-for="juego in lista.games" v-bind:key="juego.id">
                                 <td>
-                                    <img :src="`/img/juegos/portadas/${juego.slug}.png`" alt="" height="100">
+                                    <router-link :to="{name:'game',params:{slug:juego.slug}}">
+                                        <img :src="`/img/juegos/portadas/${juego.slug}.png`" alt="" height="100"/>
+                                    </router-link>
                                 </td>
                                 <td>{{ juego.title }}</td>
                                 <td>
-                                    <div>
+                                    <div class="">
                                         <div class="btn btn-sm" v-bind:class="[juego.pivot.status == 'pendiente' ? 'btn-success': 'btn-secondary']">
                                             <i class="fas fa-clock fa-fw"></i>
                                             <div>Pendiente</div>
@@ -139,6 +141,10 @@ export default {
 .games-table {
     /* -webkit-box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px 29px 0px rgba(0, 0, 0, 0.1); */
+}
+
+.btn-status{
+    max-width: fit-content;
 }
 
 @media (min-width: 767.98px) {

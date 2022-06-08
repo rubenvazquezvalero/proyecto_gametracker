@@ -14,7 +14,12 @@ class PlatformController extends Controller
      */
     public function index()
     {
-        //
+        return Platform::all();
+    }
+
+    public function indexPaginate()
+    {
+        return Platform::paginate(10);
     }
 
     /**

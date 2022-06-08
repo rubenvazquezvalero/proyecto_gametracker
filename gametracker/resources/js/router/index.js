@@ -25,7 +25,14 @@ import Juego from '../components/Juego.vue';
 import Perfil from '../components/Perfil.vue';
 /* Admin */
 import IndexAdmin from '../components/admin/Index.vue';
+import Usuarios from '../components/admin/Usuarios.vue';
+import Plataformas from '../components/admin/Plataformas.vue';
+import Companias from '../components/admin/Companias.vue';
+import Modos from '../components/admin/Modos.vue';
 import JuegosAdmin from '../components/admin/Juegos.vue';
+
+import NuevoJuego from '../components/admin/NuevoJuego.vue';
+import NuevaCompania from '../components/admin/NuevaCompania.vue';
 
 import PageNotFound from '../components/404.vue';
 
@@ -41,14 +48,68 @@ const Routes = [
         },
         children: [
             {
-                name: 'juegos',
+                name: 'usuarios',
+                path: "/admin/usuarios",
+                component:  Usuarios,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración Usuarios`
+                }
+            },
+            {
+                name: 'juegosAdmin',
                 path: "/admin/juegos",
                 component:  JuegosAdmin,
                 meta: {
                     middleware: "auth",
                     title: `Administración Juegos`
                 }
-            }
+            },
+            {
+                name: 'nuevoJuego',
+                path: "/admin/juegos/nuevo",
+                component:  NuevoJuego,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración | Crear juego`
+                }
+            },
+            {
+                name: 'plataformas',
+                path: "/admin/plataformas",
+                component:  Plataformas,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración Plataformas`
+                }
+            },
+            {
+                name: 'companias',
+                path: "/admin/companias",
+                component:  Companias,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración Compañias`
+                }
+            },
+            {
+                name: 'nuevaCompania',
+                path: "/admin/companias/nueva",
+                component:  NuevaCompania,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración | Crear compañia`
+                }
+            },
+            {
+                name: 'modos',
+                path: "/admin/modos",
+                component:  Modos,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración Modos de Juego`
+                }
+            },
         ]
         
     },

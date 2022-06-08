@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
     
     public function publishedGames(){
         return $this->belongsToMany(Game::class, 'game_publisher');
