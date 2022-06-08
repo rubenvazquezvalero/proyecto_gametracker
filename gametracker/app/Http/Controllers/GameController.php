@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\GameResource;
 use App\Models\Game;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,35 @@ class GameController extends Controller
         //$games = Game::all();
         $games = Game::paginate(20);
         return $games;
+    }
+
+    public function filter(Request $request)
+    {
+        $genres = "(";
+        try {
+            //$games = Game::with(['genres','themes','platforms','developers','publishers','game_modes']);
+            if($request->genres != null && count($request->genres) > 0){
+                for ($i=0; $i < count($request->genres); $i++) { 
+                    if($i>0){
+                        $genres.=",";
+                    }
+                    $genres.= "'".$request->genres[$i]['name']."'";
+                }
+                $genres.=")";
+                
+                $games = Game::where('title', 'like', "%".$request->title."%")->whereRelation('genres','name','like',$request->genres[0]['name'])->paginate(20);
+            } else {
+                $games = Game::where('title', 'like', "%".$request->title."%")->paginate(20);
+            }
+            //$games = Game::where('title', 'like', "%".$request->title."%")->genres()->where('name','like','%'.$request->genres.'%')->paginate(20);
+            //return GameResource::collection($games->paginate())->response();
+            //$games = Game::all();
+            //$games = Game::paginate(20);
+            return $games;
+        } catch (\Throwable $th) {
+            return $th;
+        }
+        
     }
 
     /**

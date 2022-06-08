@@ -1,39 +1,43 @@
 <template>
-    <div class="container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-12 col-md-6 offset-md-3">
-                <div class="card shadow sm">
-                    <div class="card-body">
-                        <h1 class="text-center">Register</h1>
-                        <hr/>
-                        <form action="javascript:void(0)" @submit.prevent="register" class="row" method="post">
-                            <div class="form-group col-12">
-                                <label for="name" class="font-weight-bold">Name</label>
-                                <input type="text" name="name" v-model="user.name" id="name" placeholder="Enter name" class="form-control">
-                            </div>
-                            <div class="form-group col-12">
-                                <label for="email" class="font-weight-bold">Email</label>
-                                <input type="text" name="email" v-model="user.email" id="email" placeholder="Enter Email" class="form-control">
-                            </div>
-                            <div class="form-group col-12">
-                                <label for="password" class="font-weight-bold">Password</label>
-                                <input type="password" name="password" v-model="user.password" id="password" placeholder="Enter Password" class="form-control">
-                            </div>
-                            <div class="form-group col-12">
-                                <label for="password_confirmation" class="font-weight-bold">Confirm Password</label>
-                                <input type="password" name="password_confirmation" v-model="user.password_confirmation" id="password_confirmation" placeholder="Enter Password" class="form-control">
-                            </div>
-                            <div class="col-12 mb-2">
-                                <button type="submit" :disabled="processing" class="btn btn-primary btn-block">
-                                    {{ processing ? "Please wait" : "Register" }}
-                                </button>
-                            </div>
-                            <div class="col-12 text-center">
-                                <label>Already have an account? <router-link :to="{name:'login'}">Login Now!</router-link></label>
-                            </div>
-                        </form>
-                    </div>
+
+    <div class="container">
+        <div class="register-wrapper rounded p-5 mx-auto text-dark bg-white">
+            <div class="register-header text-center">
+                <div class="mt-2 mb-3">
+                    <img src="/img/logo_gametracker_blanco_sombra2_125x65.png" alt="Logotipo">
                 </div>
+                <span class="mt-2 text-muted fw-bold">Registro</span>
+            </div>
+            <form action="javascript:void(0)" @submit.prevent="register" method="POST">
+                <div class="form-floating my-4">
+                    <input type="text" v-model="user.name" name="name" class="form-control" id="name"
+                        placeholder="Nombre" required autofocus>
+                    <label for="name">Nombre</label>
+                </div>
+                <div class="form-floating my-4">
+                    <input type="email" v-model="user.email" name="email" class="form-control" id="email"
+                        placeholder="Email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating my-4">
+                    <input type="password" v-model="user.password" name="password" class="form-control" id="password"
+                        placeholder="Password" required>
+                    <label for="password">Contraseña</label>
+                </div>
+                <div class="form-floating my-4">
+                    <input type="password" v-model="user.password_confirmation" name="password_confirmation" class="form-control" id="password_confirmation"
+                        placeholder="Password confirmation" required>
+                    <label for="password_confirmation">Confirmación de contraseña</label>
+                </div>
+                <div class="d-flex col-12">
+                    <button type="submit" :disabled="processing" class="btn btn-primary fw-bold mx-auto">{{ processing ?
+                            "Creando cuenta..." : "Crear cuenta"
+                    }} <i class="fas fa-sign-in-alt fa-fw"></i></button>
+                </div>
+            </form>
+            <div class="text-center mt-5">
+                <span class="text-muted">¿Ya tienes una cuenta?</span>
+                <router-link :to="{ name: 'login' }" class="text-muted mx-auto">Login</router-link>
             </div>
         </div>
     </div>
@@ -42,32 +46,45 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-    name:'register',
-    data(){
+    name: 'register',
+    data() {
         return {
-            user:{
-                name:"",
-                email:"",
-                password:"",
-                password_confirmation:""
+            user: {
+                name: "",
+                email: "",
+                password: "",
+                password_confirmation: ""
             },
-            processing:false
+            processing: false
         }
     },
-    methods:{
+    methods: {
         ...mapActions({
-            signIn:'auth/login'
+            signIn: 'auth/login'
         }),
-        async register(){
+        async register() {
             this.processing = true
-            await axios.post('/api/register',this.user).then(response=>{
+            await axios.post('/api/register', this.user).then(response => {
                 this.signIn()
-            }).catch(({response:{data}})=>{
+            }).catch(({ response: { data } }) => {
                 alert(data.message)
-            }).finally(()=>{
+            }).finally(() => {
                 this.processing = false
             })
         }
     }
 }
 </script>
+
+<style scoped>
+.register-wrapper{
+    max-width: 400px;
+    width: 100%;
+}
+.register-header{
+    margin-bottom: 40px;
+}
+.form-floating label {
+    line-height: 2;
+}
+</style>

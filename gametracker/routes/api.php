@@ -33,6 +33,8 @@ Route::get('/companies/name', 'CompanyController@indexOnlyName');
 Route::get('/platforms/paginate', 'PlatformController@indexPaginate');
 Route::get('/companies/paginate', 'CompanyController@indexPaginate');
 Route::get('/modes/paginate', 'GameModeController@indexPaginate');
+Route::post('/game/filtro', 'GameController@filter');
+
 
 Route::apiResource('game', GameController::class);
 Route::apiResource('list', GameListController::class);

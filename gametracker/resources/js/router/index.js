@@ -123,6 +123,15 @@ const Routes = [
         },
         children: [
             {
+                name: "home",
+                path: "/",
+                component: Juegos,
+                meta: {
+                    middleware: "all",
+                    title: `Juegos`
+                }
+            },
+            {
                 name: "login",
                 path: "/login",
                 component: Login,

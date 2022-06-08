@@ -48,7 +48,7 @@
                         <label class="typo__label">Modos de juego</label>
                         <multiselect v-model="gameData.modes" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="modes"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <label class="typo__label">Géneros</label>
                         <multiselect v-model="gameData.genres" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="genres"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                     <!-- Multiselect themes -->
@@ -66,7 +66,7 @@
                         <label class="typo__label">Temáticas</label>
                         <multiselect v-model="gameData.themes" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="themes"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                     <!-- Multiselect platforms -->
@@ -74,7 +74,7 @@
                         <label class="typo__label">Plataformas</label>
                         <multiselect v-model="gameData.platforms" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="platforms"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                     <label class="mb-3">Fechas de salida</label>
@@ -87,7 +87,7 @@
                         <label class="typo__label">Desarrolladores</label>
                         <multiselect v-model="gameData.developers" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="companies"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                     <!-- Multiselect publishers -->
@@ -95,7 +95,7 @@
                         <label class="typo__label">Editores</label>
                         <multiselect v-model="gameData.publishers" tag-placeholder="Add this as new tag"
                             placeholder="Search or add a tag" label="name" track-by="id" :options="companies"
-                            :multiple="true" :taggable="false">
+                            :multiple="true" :taggable="false" :limit="1">
                         </multiselect>
                     </div>
                 </div>
