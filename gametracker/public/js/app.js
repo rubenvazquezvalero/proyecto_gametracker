@@ -34502,6 +34502,13 @@ var render = function () {
                   alt: _vm.juego.slug,
                   loading: "lazy",
                 },
+                on: {
+                  error: function ($event) {
+                    $event.target.src =
+                      "https://via.placeholder.com/264x352.png?text=" +
+                      _vm.juego.title
+                  },
+                },
               }),
               _vm._v(" "),
               _c("div", { staticClass: "dropdown d-block" }, [

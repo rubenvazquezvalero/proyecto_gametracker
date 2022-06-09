@@ -9,7 +9,7 @@
                     <div class="col cover">
                         <div class="cover-content">
                             <!-- Portada del juego -->
-                            <img class="img-fluid" :src="`/img/juegos/portadas/${juego.slug}.png`" :alt="juego.slug"
+                            <img class="img-fluid" :src="`/img/juegos/portadas/${juego.slug}.png`" @error="$event.target.src=`https://via.placeholder.com/264x352.png?text=${juego.title}`" :alt="juego.slug"
                                 loading="lazy">
                             <!-- Boton añadir a la lista -->
                             <div class="dropdown d-block">
