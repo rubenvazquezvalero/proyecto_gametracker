@@ -155,6 +155,10 @@ export default {
     }
 }
 
+div.container {
+    overflow: hidden;
+}
+
 nav.navbar.navbar-dark {
     background-color: #2B4234;
 }

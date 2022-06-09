@@ -13735,7 +13735,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media (min-width: 992px) {\nnav.navbar[data-v-b23fbd66] {\n        height: 68px;\n        /* padding: 0; */\n}\n}\nnav.navbar.navbar-dark[data-v-b23fbd66] {\n    background-color: #2B4234;\n}\n.nav-item .nav-link[data-v-b23fbd66] {\n    padding: 15px;\n}\nul.navbar-nav.main-nav[data-v-b23fbd66] {\n    display: inline-flex;\n    justify-content: center;\n    width: 100%;\n    font-size: 1rem;\n}\n.user-nav[data-v-b23fbd66] {\n    min-width: 85px;\n    font-size: 1rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media (min-width: 992px) {\nnav.navbar[data-v-b23fbd66] {\n        height: 68px;\n        /* padding: 0; */\n}\n}\ndiv.container[data-v-b23fbd66] {\n    overflow: hidden;\n}\nnav.navbar.navbar-dark[data-v-b23fbd66] {\n    background-color: #2B4234;\n}\n.nav-item .nav-link[data-v-b23fbd66] {\n    padding: 15px;\n}\nul.navbar-nav.main-nav[data-v-b23fbd66] {\n    display: inline-flex;\n    justify-content: center;\n    width: 100%;\n    font-size: 1rem;\n}\n.user-nav[data-v-b23fbd66] {\n    min-width: 85px;\n    font-size: 1rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
