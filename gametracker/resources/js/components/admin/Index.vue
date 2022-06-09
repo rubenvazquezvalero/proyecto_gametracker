@@ -57,7 +57,7 @@
                     </li>
                     <hr>
                     <li class="nav-item">
-                        <router-link :to="{ name: 'games' }" class="nav-link"><i class="fa-solid fa-reply fa-fw"></i> Volver a la web</router-link>
+                        <router-link :to="{ name: 'home' }" class="nav-link"><i class="fa-solid fa-reply fa-fw"></i> Volver a la web</router-link>
                     </li>
                 </ul>
             </aside>

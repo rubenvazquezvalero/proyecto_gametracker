@@ -2,7 +2,7 @@
     <div id="app-web">
         <nav class="navbar navbar-expand-lg navbar-dark position-relative">
             <div class="container">
-                <router-link :to="{ name: 'login' }" class="navbar-brand">
+                <router-link :to="{ name: 'home' }" class="navbar-brand">
                     <img src="/img/logo_gametracker_blanco_sin_borde_125x65.png" alt="" width="85">
                 </router-link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

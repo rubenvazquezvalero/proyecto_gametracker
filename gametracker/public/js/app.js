@@ -37435,7 +37435,7 @@ var render = function () {
                     "router-link",
                     {
                       staticClass: "nav-link",
-                      attrs: { to: { name: "games" } },
+                      attrs: { to: { name: "home" } },
                     },
                     [
                       _c("i", { staticClass: "fa-solid fa-reply fa-fw" }),
@@ -39163,7 +39163,7 @@ var render = function () {
           [
             _c(
               "router-link",
-              { staticClass: "navbar-brand", attrs: { to: { name: "login" } } },
+              { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
               [
                 _c("img", {
                   attrs: {
