@@ -34949,7 +34949,7 @@ var render = function () {
                       error: function ($event) {
                         $event.target.src =
                           "https://via.placeholder.com/264x352.png?text=" +
-                          juego.name
+                          juego.title
                       },
                     },
                   }),
