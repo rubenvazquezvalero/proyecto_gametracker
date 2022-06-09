@@ -5670,7 +5670,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'juegos',
   data: function data() {
@@ -34945,6 +34944,13 @@ var render = function () {
                       src: "/img/juegos/portadas/" + juego.slug + ".png",
                       alt: juego.slug,
                       loading: "lazy",
+                    },
+                    on: {
+                      error: function ($event) {
+                        $event.target.src =
+                          "https://via.placeholder.com/264x352.png?text=" +
+                          juego.name
+                      },
                     },
                   }),
                 ]
