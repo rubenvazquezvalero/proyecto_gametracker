@@ -113,6 +113,7 @@ export default {
 #app-web {
     background-color: #e6f9ee;
     line-height: 1.15;
+    overflow: hidden;
 }
 
 #app-web main {
@@ -154,11 +155,6 @@ export default {
         /* padding: 0; */
     }
 }
-
-div.container {
-    overflow: hidden;
-}
-
 nav.navbar.navbar-dark {
     background-color: #2B4234;
 }

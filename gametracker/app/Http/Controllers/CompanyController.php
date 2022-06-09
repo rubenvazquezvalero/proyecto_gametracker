@@ -57,7 +57,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return $company;
     }
 
     /**
@@ -69,7 +69,8 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company->fill($request->post())->save();
+        return $company;
     }
 
     /**

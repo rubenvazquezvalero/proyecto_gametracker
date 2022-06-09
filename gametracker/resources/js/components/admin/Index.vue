@@ -42,7 +42,7 @@
                         <router-link :to="{ name: 'plataformas' }" class="nav-link"><i class="fa-solid fa-circle-right fa-fw"></i> Plataformas</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-right fa-fw"></i> Temáticas</a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-right fa-fw"></i> Temas</a>
                     </li>
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="#"><i class="fa-solid fa-building fa-fw"></i> Compañias</a> -->

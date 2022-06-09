@@ -13,11 +13,11 @@ import Register from '../components/Register.vue';
 /* Guest Component */
 
 /* Layouts */
-import DahboardLayout from '../components/layouts/Dashboard.vue';
+//import DahboardLayout from '../components/layouts/Dashboard.vue';
 /* Layouts */
 
 /* Authenticated Component */
-import Dashboard from '../components/Dashboard.vue';
+//import Dashboard from '../components/Dashboard.vue';
 /* Authenticated Component */
 
 import Juegos from '../components/Juegos.vue';
@@ -32,7 +32,9 @@ import Modos from '../components/admin/Modos.vue';
 import JuegosAdmin from '../components/admin/Juegos.vue';
 
 import NuevoJuego from '../components/admin/NuevoJuego.vue';
+import EditarJuego from '../components/admin/EditarJuego.vue';
 import NuevaCompania from '../components/admin/NuevaCompania.vue';
+import EditarCompania from '../components/admin/EditarCompania.vue';
 
 import PageNotFound from '../components/404.vue';
 
@@ -75,6 +77,15 @@ const Routes = [
                 }
             },
             {
+                name: 'editarJuego',
+                path: "/admin/juegos/editar/:id",
+                component:  EditarJuego,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración | Editar juego`
+                }
+            },
+            {
                 name: 'plataformas',
                 path: "/admin/plataformas",
                 component:  Plataformas,
@@ -99,6 +110,15 @@ const Routes = [
                 meta: {
                     middleware: "auth",
                     title: `Administración | Crear compañia`
+                }
+            },
+            {
+                name: 'editarCompania',
+                path: "/admin/companias/editar/:id",
+                component:  EditarCompania,
+                meta: {
+                    middleware: "auth",
+                    title: `Administración | Editar compañia`
                 }
             },
             {

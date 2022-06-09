@@ -35,7 +35,7 @@
                     <!-- <td>{{ juego.description.substr(0,100)+'...' }}</td> -->
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square fa-fw"></i></button>
+                            <router-link :to="{ name:'editarJuego',params:{id:juego.id}}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square fa-fw"></i></router-link>
                             <button type="button" class="btn btn-danger" @click="deleteGame(juego)"><i class="fa-solid fa-ban fa-fw"></i></button>
                         </div>
                     </td>
