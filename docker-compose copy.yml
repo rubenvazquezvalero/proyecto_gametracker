@@ -1,0 +1,75 @@
+version: '3'
+services:
+  
+  #PHP Service
+  app:
+    build:
+      context: ./gametracker
+      args:
+          - "BUILD_ARGUMENT_ENV=prod"
+          - "BUILD_ARGUMENT_DEBUG_ENABLED=false"
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./gametracker:/var/www
+      - ./gametracker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./gametracker:/var/www
+      - ./gametracker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./gametracker/certbot/www:/var/www/certbot/:ro
+      - ./gametracker/certbot/conf/:/etc/nginx/ssl/:ro
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./gametracker/certbot/www/:/var/www/certbot/:rw
+      - ./gametracker/certbot/conf/:/etc/letsencrypt/:rw
+
+  #MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: gametracker
+      MYSQL_ROOT_PASSWORD: 12345
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./gametracker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
