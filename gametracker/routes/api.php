@@ -1,40 +1,35 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-//use App\Http\Controllers\GameController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\GameListController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PlatformController;
+use App\Http\Controllers\GameModeController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register',[AuthController::class,'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/logout',[AuthController::class,'logout']);
-    Route::post('/list/add-game', 'GameListController@addGame');
+    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::post('/list/add-game', [GameListController::class, 'addGame']);
 });
 
-Route::get('/game-by-slug/{slug}', 'GameController@showBySlug');
-Route::get('/companies/name', 'CompanyController@indexOnlyName');
-Route::get('/platforms/paginate', 'PlatformController@indexPaginate');
-Route::get('/companies/paginate', 'CompanyController@indexPaginate');
-Route::get('/modes/paginate', 'GameModeController@indexPaginate');
-Route::post('/game/filtro', 'GameController@filter');
-
+Route::get('/game-by-slug/{slug}', [GameController::class, 'showBySlug']);
+Route::get('/companies/name', [CompanyController::class, 'indexOnlyName']);
+Route::get('/platforms/paginate', [PlatformController::class, 'indexPaginate']);
+Route::get('/companies/paginate', [CompanyController::class, 'indexPaginate']);
+Route::get('/modes/paginate', [GameModeController::class, 'indexPaginate']);
+Route::post('/game/filtro', [GameController::class, 'filter']);
 
 Route::apiResource('game', GameController::class);
 Route::apiResource('list', GameListController::class);
