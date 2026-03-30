@@ -22,4 +22,4 @@ WORKDIR /app
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "cp -n .env.example .env && composer update --no-interaction && php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"]
+CMD ["sh", "-c", "cp -n .env.example .env && composer update --no-interaction && { grep -q '^APP_KEY=$' .env && php artisan key:generate --force || true; } && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"]
