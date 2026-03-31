@@ -26,3 +26,6 @@ services:
     depends_on:
       - mariadb
     #command: bash -c "composer install"
+
+volumes:
+  gametracker_data: # Docker creará este volumen automáticamente
