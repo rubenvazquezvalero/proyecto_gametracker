@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\GameList;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -21,7 +20,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $post_data['name'],
             'email' => $post_data['email'],
-            'password' => Hash::make($post_data['password']),
+            'password' => $post_data['password'],
         ]);
     
         $token = $user->createToken('authToken')->plainTextToken;
