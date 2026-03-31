@@ -22,7 +22,7 @@ services:
       - DB_PASSWORD=ruben
       - DB_DATABASE=gametracker
     volumes:
-      - '/volume2/@docker/volumes/gametracker_data:/app'
+      - '/volume2/docker/gametracker:/app'
     depends_on:
       - mariadb
     #command: bash -c "composer install"
